@@ -1,0 +1,70 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion Integer.parseInt(project.ANDROID_BUILD_SDK_VERSION)
+    buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
+    defaultConfig {
+        applicationId "cn.weli.musicplayer_yifan"
+        minSdkVersion project.ANDROID_BUILD_MIN_SDK_VERSION
+        targetSdkVersion project.ANDROID_BUILD_TARGET_SDK_VERSION
+        versionCode Integer.parseInt(project.VERSION_CODE)
+        versionName project.VERSION_NAME
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters "armeabi-v7a"
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //Android support包依赖
+    implementation "com.android.support:percent:${project.ANDROID_SUPPORT_LIB_VERSION}"
+    implementation "com.android.support:appcompat-v7:${project.ANDROID_SUPPORT_LIB_VERSION}"
+    implementation "com.android.support:recyclerview-v7:${project.ANDROID_SUPPORT_LIB_VERSION}"
+    implementation "com.android.support:cardview-v7:${project.ANDROID_SUPPORT_LIB_VERSION}"
+    implementation "com.android.support:design:${project.ANDROID_SUPPORT_LIB_VERSION}"
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    // Butterknife
+    api "com.jakewharton:butterknife:${project.BUTTERKNIFE_VERSION_CODE}"
+    annotationProcessor "com.jakewharton:butterknife-compiler:${project.BUTTERKNIFE_VERSION_CODE}" //必须要有
+
+    api "com.android.support.constraint:constraint-layout:${project.CONSTRAINTLAYOUT_VERSION}"
+    // Leakcanary
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:${project.LEAKCANARY_VERSION_CODE}"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${project.LEAKCANARY_VERSION_CODE}"
+    // AndPermission
+    api "com.yanzhenjie:permission:${project.ANDPERMISSION_VERSION_CODE}"
+    //gson
+    api "com.google.code.gson:gson:${project.GSON_VERSION_CODE}"
+    //smartTabLayout
+    api "com.ogaclejapan.smarttablayout:library:${project.SMARTTABLAYOUT_VERSION_CODE}"
+    api "com.ogaclejapan.smarttablayout:utils-v13:${project.SMARTTABLAYOUT_VERSION_CODE}"
+    //SmartRefreshLayout下拉刷新上拉加载详解
+    api "com.scwang.smartrefresh:SmartRefreshLayout:${project.SMARTREFRESHLAYOUT_VERSION_CODE}"
+    api "com.scwang.smartrefresh:SmartRefreshHeader:${project.SMARTREFRESHLAYOUT_VERSION_CODE}"
+    //statusbarutil https://github.com/laobie/StatusBarUtil
+    api "com.jaeger.statusbarutil:library:${project.STATUSBARUTIL_VERSION_CODE}"
+    // retrofit2 + rxjava2
+    api "com.squareup.retrofit2:retrofit:${project.RETROFIT_VERSION_CODE}"
+    api "com.squareup.retrofit2:converter-gson:${project.RETROFIT_VERSION_CODE}"
+    api "com.squareup.retrofit2:adapter-rxjava2:${project.RETROFIT_VERSION_CODE}"
+    api "io.reactivex.rxjava2:rxandroid:${project.RXANDROID_VERSION_CODE}"
+    api "io.reactivex.rxjava2:rxjava:${project.RXJAVA_VERSION_CODE}"
+    // Room components
+    implementation "android.arch.persistence.room:runtime:${project.ROOM_VERSION_CODE}"
+    annotationProcessor "android.arch.persistence.room:compiler:${project.ROOM_VERSION_CODE}"
+    androidTestImplementation "android.arch.persistence.room:testing:${project.ROOM_VERSION_CODE}"
+    //glide
+    api "com.github.bumptech.glide:glide:${project.GLIDE_VERSION_CODE}"
+    annotationProcessor "com.github.bumptech.glide:compiler:${project.GLIDE_VERSION_CODE}"
+
+}
